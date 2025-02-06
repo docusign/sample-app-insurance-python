@@ -1,9 +1,9 @@
 ﻿{
-  "ApplicationName": "MySure",
+  "ApplicationName": "Insurance Sample App",
   "TransactionHistoryLink": "Status",
   "GitHubLink": "GitHub Source",
   "AboutLink": "About",
-  "Copyright": "© 2024 Docusign Inc.",
+  "Copyright": "© 2025 Docusign Inc.",
   "LogOutLink": "Log out",
   "LogInButton": "Log in",
   "AlertMessage": "Sorry, there was some issue with the Code Grant Authorization, so you have been logged with JWT authorization"
