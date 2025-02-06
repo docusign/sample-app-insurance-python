@@ -6,7 +6,6 @@ export const Footer = () => {
   return (
     <footer role="contentinfo" className="footer bg-white pt-4 pb-4">
       <div className="container">
-        <span className="copyright">{t("Copyright")}</span>
       </div>
     </footer>
   );
