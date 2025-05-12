@@ -17,3 +17,4 @@ flask_session/
 # frontend
 /node_modules
 /build
+client/node_modules
