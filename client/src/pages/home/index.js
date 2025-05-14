@@ -140,7 +140,6 @@ export const Home = () => {
       </section>
       <section className="cta-section text-center">
         <div className="container">
-          <h2 className="h2 cta-title">{t("Footer1")}</h2>
           <div className="cta-button-holder">
             <a
               href="https://go.docusign.com/sandbox/productshot?elq=16799"
@@ -159,7 +158,6 @@ export const Home = () => {
               </button>
             </a>
           </div>
-          <div className="cta-description">{parse(t("Footer2"))}</div>
         </div>
       </section>
     </>

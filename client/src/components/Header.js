@@ -45,7 +45,7 @@ export const Header = () => {
               <li className="nav-item">
                 <a
                   className="nav-link"
-                  href="https://github.com/docusign/sample-app-mysure-python"
+                  href="https://github.com/docusign/sample-app-insurance-python"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

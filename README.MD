@@ -1,11 +1,11 @@
-# Python and React: MySure Insurance Sample Application
+# Python and React: Insurance Sample Application
 
-### Github repo: MySureSampleApp
+### Github repo: sample-app-insurance-python
 
 ## Introduction
-MySuresample application written in Python 3.7 (server) and React (client). You can find a live instance running at [https://mysure.sampleapps.docusign.com/](https://mysure.sampleapps.docusign.com/).
+The Docusign Insurance Sample App written in Python 3.7 (server) and React (client). You can find a live instance running at [https://insurance.sampleapps.docusign.com/](https://insurance.sampleapps.docusign.com/).
 
-MySure demonstrates the following:
+The Insurance Sample App demonstrates the following:
 
 1. Authentication with Docusign via [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/)
 2. **Submit a claim:** [Source](./app/api/requests.py)
@@ -57,8 +57,8 @@ MySure demonstrates the following:
 
 **Manual**
 
-1. Download or clone this repository to your workstation in a new folder named **sample-app-mysure-python**.
-2. Navigate to that folder: **`cd sample-app-mysure-python`**
+1. Download or clone this repository to your workstation in a new folder named **sample-app-insurance-python**.
+2. Navigate to that folder: **`cd sample-app-insurance-python`**
 3. Install python packages: **`pip install -r requirements.txt`**
 4. Install React dependencies using the [npm](https://www.npmjs.com/) package manager:  **npm install**
 5. Update the **.env** file with the integration key and other settings.
@@ -69,8 +69,8 @@ MySure demonstrates the following:
 
 **Using installation scripts**
 
-1. Download or clone this repository to your workstation in a new folder named **sample-app-mysure-python**.
-2. Navigate to the scripts subfolder:**`cd sample-app-mysure-python/scripts`**
+1. Download or clone this repository to your workstation in a new folder named **sample-app-insurance-python**.
+2. Navigate to the scripts subfolder:**`cd sample-app-insurance-python/scripts`**
 3. Run the installation script: **`./install.sh`** (`./install.bat` for Windows)
 4. Update the **.env** file with the integration key and other settings.
     > **Note:** Protect your integration key and client secret. You should make sure that the **.env** file will not be stored in your source code repository.
@@ -81,11 +81,11 @@ All installation scripts are located in the **scripts** folder.
 1. To stop the application, run **`./stop.sh`**
 1. To remove the virtual environment and modules, run **`./clean.sh`**
 
-## Running MySure
+## Running the Insurance Sample App
 
 ### Manual
 
-1. Navigate to the application folder: **`cd sample-app-mysure-python`**
+1. Navigate to the application folder: **`cd sample-app-insurance-python`**
 2. Run the application: **`flask run --port 5001`**
 3. Run npm: **`npm start`**
 4. Open a browser to **http://localhost:3000**
