@@ -63,9 +63,9 @@ def buy_new_insurance():
     envelope_args = {
         'signer_client_id': 1000,
         'ds_return_url': req_json['callback-url'],
-        'gateway_account_id': os.environ.get('PAYMENT_GATEWAY_ACCOUNT_ID'),
-        'gateway_name': os.environ.get('PAYMENT_GATEWAY_NAME'),
-        'payment_display_name': os.environ.get('PAYMENT_GATEWAY_DISPLAY_NAME'),
+        'gateway_account_id': os.environ.get('DS_PAYMENT_GATEWAY_ID'),
+        'gateway_name': os.environ.get('DS_PAYMENT_GATEWAY_NAME'),
+        'payment_display_name': os.environ.get('DS_PAYMENT_GATEWAY_DISPLAY_NAME'),
     }
 
     try:
