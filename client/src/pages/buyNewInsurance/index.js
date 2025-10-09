@@ -8,6 +8,7 @@ import { SEND_REQEUST_SUCCESS } from "./actionTypes";
 import { useTranslation } from "react-i18next";
 import LoggedUserContext from "../../contexts/logged-user/logged-user.context";
 import { checkUnlogged } from "../../api/auth";
+import { ExtensionsModal } from "../../components/ExtensionsModal.js";
 
 const initialState = {
   errors: [],
@@ -27,11 +28,14 @@ const initialState = {
 };
 
 export const BuyNewInsurance = () => {
+  const { t: tCommon } = useTranslation("Common");
   const { t } = useTranslation("BuyNewInsurance");
   const states = t("States", { returnObjects: true });
   const options = t("Options", { returnObjects: true });
   const [option, setOption] = useState(options[0]);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [areExtensionsPresent, setAreExtensionsPresent] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const [request, setRequestData] = useState({ ...initialState.request });
   const [requesting, setRequesting] = useState(false);
   const [errors, setErrors] = useState({});
@@ -46,6 +50,8 @@ export const BuyNewInsurance = () => {
     if (!formIsValid()) {
       return;
     }
+
+    const useWithoutExtension = sessionStorage.getItem("useWithoutExtensions") === "true";
     const body = {
       "callback-url": process.env.REACT_APP_DS_RETURN_URL + "/signing_complete",
       user: {
@@ -57,6 +63,7 @@ export const BuyNewInsurance = () => {
         state: request.state,
         zip_code: request.zipCode
       },
+      useWithoutExtension: useWithoutExtension,
       insurance: {
         detail1: {
           name: option.detail1,
@@ -71,6 +78,15 @@ export const BuyNewInsurance = () => {
     setRequesting(true);
 
     try {
+      if (!useWithoutExtension) {
+        const extensions = await api.getExtensions();
+        if(extensions.areExtensionsPresent === false){
+          setAreExtensionsPresent(true);
+          setModalShow(true);
+          return;
+        }
+      }
+
       const savedRequest = await api.buyNewInsurance(body, setShowJWTModal);
       dispatch({
         type: SEND_REQEUST_SUCCESS,
@@ -179,6 +195,25 @@ export const BuyNewInsurance = () => {
           />
           <ApiDescription />
         </div>
+
+        {areExtensionsPresent && (
+          <ExtensionsModal
+            show={modalShow}
+            onDownloadExtensions={
+                () => {
+                setModalShow(false);
+              }
+            }
+            onHide={
+                () => {
+                sessionStorage.setItem("useWithoutExtensions", "true");
+                setModalShow(false);
+              }
+            }
+            title={tCommon("DownloadExtensionsHeader")}
+            message= {tCommon("DownloadExtensionsMessage")}
+          />
+        )}
       </section>
     );
   } else {
