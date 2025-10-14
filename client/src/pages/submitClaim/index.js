@@ -39,6 +39,7 @@ export const SubmitClaim = () => {
   const [errors, setErrors] = useState({});
   const [date, setDate] = useState(new Date());
   const { logged, setLogged, setAuthType } = useContext(LoggedUserContext);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     checkUnlogged(logged, setLogged, setAuthType);
@@ -49,6 +50,7 @@ export const SubmitClaim = () => {
     if (!formIsValid()) {
       return;
     }
+    setLoading(true);
 
     const useWithoutExtension = sessionStorage.getItem("useWithoutExtensions") === "true";
     const body = {
@@ -91,6 +93,7 @@ export const SubmitClaim = () => {
       setErrors({ ...errors, onSave: error.message });
     } finally {
       setRequesting(false);
+      setLoading(false);
     }
   }
 
@@ -172,6 +175,7 @@ export const SubmitClaim = () => {
           setDate={setDate}
           setOption={setOption}
           date={date}
+          isLoading={isLoading}
         />
         <ApiDescription />
       </div>
