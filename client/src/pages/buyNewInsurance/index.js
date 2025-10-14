@@ -40,6 +40,7 @@ export const BuyNewInsurance = () => {
   const [requesting, setRequesting] = useState(false);
   const [errors, setErrors] = useState({});
   const { logged, setLogged, setAuthType, setShowJWTModal } = useContext(LoggedUserContext);
+    const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     checkUnlogged(logged, setLogged, setAuthType);
@@ -50,6 +51,7 @@ export const BuyNewInsurance = () => {
     if (!formIsValid()) {
       return;
     }
+    setLoading(true);
 
     const useWithoutExtension = sessionStorage.getItem("useWithoutExtensions") === "true";
     const body = {
@@ -99,6 +101,7 @@ export const BuyNewInsurance = () => {
       setErrors({ ...errors, onSave: error.message });
     } finally {
       setRequesting(false);
+      setLoading(false);
     }
   }
 
@@ -192,6 +195,7 @@ export const BuyNewInsurance = () => {
             errors={errors}
             setOption={setOption}
             options={options}
+            isLoading={isLoading}
           />
           <ApiDescription />
         </div>
