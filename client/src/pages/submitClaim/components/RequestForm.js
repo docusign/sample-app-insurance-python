@@ -176,7 +176,7 @@ export const RequestForm = ({
                 error={errors.city}
               />
               <div className="row">
-                <div className="col-md-6">
+                <div>
                   <InputSelect
                     name="state"
                     label={t("State")}
@@ -188,6 +188,13 @@ export const RequestForm = ({
                     error={errors.state}
                   />
                 </div>
+                <InputText
+                  name="country"
+                  label={t("Country")}
+                  value={request.country}
+                  onChange={onChange}
+                  error={errors.country}
+                />
                 <div className="col-md-6">
                   <InputText
                     name="zipCode"
