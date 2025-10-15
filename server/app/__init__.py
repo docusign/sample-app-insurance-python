@@ -21,9 +21,8 @@ app.config.update(
     SESSION_COOKIE_NAME="sid"        
 )
 
-Session(app)  # <-- initialize Flask-Session
+Session(app) 
 
-# Existing blueprints
 app.register_blueprint(clickwrap, url_prefix=URL_PREFIX)
 app.register_blueprint(common, url_prefix=URL_PREFIX)
 app.register_blueprint(requests, url_prefix=URL_PREFIX)
