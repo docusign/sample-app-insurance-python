@@ -41,7 +41,7 @@ class DsDocument: # pylint: disable=too-many-locals
 
         if remove_white_styles:
             # Fields that should be replaced
-            fields_to_replace = ['zip_code', 'street', 'city', 'state']
+            fields_to_replace = ['zip_code', 'street', 'city', 'state', 'country']
             for field in fields_to_replace:
                 pattern = rf'<span[^>]*style="color:\s*white"[^>]*>\s*/{field}/\s*</span>'
                 replacement = f'<span class="user-info">{{{{ {field} }}}}</span>'
@@ -55,6 +55,7 @@ class DsDocument: # pylint: disable=too-many-locals
             street=claim['street'],
             city=claim['city'],
             state=claim['state'],
+            country=claim['country'],
             zip_code=claim['zip_code'],
             type=claim['type'],
             timestamp=claim['timestamp'],
@@ -154,8 +155,9 @@ class DsDocument: # pylint: disable=too-many-locals
         # Address fields mapping
         address_fields = {
             "street": "VerifyPostalAddressInput[0].street1",
-            "city": "VerifyPostalAddressInput[0].subdivision",
-            "state": "VerifyPostalAddressInput[0].countryOrRegion",
+            "city": "VerifyPostalAddressInput[0].locality",
+            "state": "VerifyPostalAddressInput[0].subdivision",
+            "country": "VerifyPostalAddressInput[0].countryOrRegion",
             "zip_code": "VerifyPostalAddressInput[0].postalCode",
         }
 
@@ -407,14 +409,16 @@ class DsDocument: # pylint: disable=too-many-locals
         render_context = dict(
             user_name=f"{user['first_name']} {user['last_name']}",
             user_email=user['email'],
-            address=f"{user['street']}, {user['city']}, {user['state']}",
+            street=user['street'],
+            city=user['city'],
+            state=user['state'],
+            country=user['country'],
             zip_code=user['zip_code'],
             detail_1=insurance_info['detail1']['name'],
             detail_2=insurance_info['detail2']['name'],
             value_detail_1=insurance_info['detail1']['value'],
             value_detail_2=insurance_info['detail2']['value']
         )
-        user['address'] = f"{user['street']}, {user['city']}, {user['state']}"
 
         content_bytes = cls._read_and_render_template(tpl, render_context)
         base64_file_content = base64.b64encode(content_bytes.encode('utf-8')).decode('ascii')
@@ -449,7 +453,10 @@ class DsDocument: # pylint: disable=too-many-locals
 
         # Address text tabs
         address_fields = {
-            "address": "VerifyPostalAddressInput[0].street1",
+            "street": "VerifyPostalAddressInput[0].street1",
+            "city": "VerifyPostalAddressInput[0].locality",
+            "state": "VerifyPostalAddressInput[0].subdivision",
+            "country": "VerifyPostalAddressInput[0].countryOrRegion",
             "zip_code": "VerifyPostalAddressInput[0].postalCode",
         }
         text_tabs = []
@@ -495,7 +502,10 @@ class DsDocument: # pylint: disable=too-many-locals
         render_context = dict(
             user_name=f"{user['first_name']} {user['last_name']}",
             user_email=user['email'],
-            address=f"{user['street']}, {user['city']}, {user['state']}",
+            street=user['street'],
+            city=user['city'],
+            state=user['state'],
+            country=user['country'],
             zip_code=user['zip_code'],
             detail_1=insurance_info['detail1']['name'],
             detail_2=insurance_info['detail2']['name'],
@@ -503,7 +513,7 @@ class DsDocument: # pylint: disable=too-many-locals
             value_detail_2=insurance_info['detail2']['value']
         )
 
-        fields_to_replace = ['address', 'zip_code', 'user_email']
+        fields_to_replace = ['street', 'city', 'country', 'state', 'zip_code', 'user_email']
         content_bytes = cls._read_and_render_template(tpl, render_context, fields_to_replace)
         base64_file_content = base64.b64encode(content_bytes.encode('utf-8')).decode('ascii')
 

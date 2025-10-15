@@ -21,7 +21,8 @@ const initialState = {
     zipCode: "",
     email: "",
     type: "",
-    description: ""
+    description: "",
+    country: ""
   }
 };
 
@@ -62,6 +63,7 @@ export const SubmitClaim = () => {
         street: request.street,
         city: request.city,
         state: request.state,
+        country: request.country,
         zip_code: request.zipCode,
         type: option.name,
         timestamp: date.toGMTString(),
@@ -144,6 +146,9 @@ export const SubmitClaim = () => {
     }
     if (!state) {
       errors.state = t("Error.State");
+    }
+    if (!state) {
+      errors.country = t("Error.Country");
     }
     if (!city) {
       errors.city = t("Error.City");

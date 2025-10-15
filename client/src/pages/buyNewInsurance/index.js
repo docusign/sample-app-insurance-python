@@ -23,7 +23,8 @@ const initialState = {
     name: "",
     value: "",
     detail1: "",
-    detail2: ""
+    detail2: "",
+    country: ""
   }
 };
 
@@ -63,7 +64,8 @@ export const BuyNewInsurance = () => {
         street: request.street,
         city: request.city,
         state: request.state,
-        zip_code: request.zipCode
+        zip_code: request.zipCode,
+        country: request.country
       },
       useWithoutExtension: useWithoutExtension,
       insurance: {
@@ -146,6 +148,7 @@ export const BuyNewInsurance = () => {
       street,
       state,
       city,
+      country,
       zipCode,
       detail1,
       detail2
@@ -171,6 +174,9 @@ export const BuyNewInsurance = () => {
     }
     if (!zipCode) {
       errors.zipCode = t("Error.ZipCode");
+    }
+    if (!country) {
+      errors.country = t("Error.Country");
     }
     if (!detail1 || !detail2) {
       errors.insuranceDetails = t("Error.insuranceDetails");

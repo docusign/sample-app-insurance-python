@@ -12,6 +12,7 @@
   "Street": "Street:",
   "City": "City:",
   "State": "State:",
+  "Country": "Country:",
   "ZipCode": "Zip code:",
   "DescriptionPlaseholder": "",
   "Date": "Date:",
@@ -96,6 +97,7 @@
     "Street": "Street is required.",
     "City": "City is required.",
     "State": "State is required.",
+    "Country": "Country is required.",
     "ZipCode": "Zip code is required.",
     "Description": "Description is required."
   },

@@ -74,12 +74,25 @@
   "HealthState": "State of health",
   "Street": "Street",
   "City": "City",
+  "Country": "Country:",
   "State": "State",
   "ZipCode": "Zip code",
   "Options": [
-    { "name": "Car", "detail1": "Car model", "detail2": "Year" },
-    { "name": "Home", "detail1": "Home year", "detail2": "Worth" },
-    { "name": "Life", "detail1": "Age", "detail2": "State of health" }
+    {
+      "name": "Car",
+      "detail1": "Car model",
+      "detail2": "Year"
+    },
+    {
+      "name": "Home",
+      "detail1": "Home year",
+      "detail2": "Worth"
+    },
+    {
+      "name": "Life",
+      "detail1": "Age",
+      "detail2": "State of health"
+    }
   ],
   "Error": {
     "FirstName": "First name is required.",
@@ -89,6 +102,7 @@
     "State": "State is required.",
     "ZipCode": "Zip code is required.",
     "Email": "Email is required.",
+    "Country": "Country is required.",
     "insuranceDetails": "Please provide your insurance details."
   },
   "ApiDecription": {
