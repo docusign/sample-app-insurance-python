@@ -70,10 +70,18 @@ The Insurance Sample App demonstrates the following:
    npm install
    ```
 5. Update the **.env** file with the integration key and other settings.
-    > **Note:** Protect your integration key and client secret. You should make sure that the **.env** file will not be stored in your source code repository.
-6. Navigate to [the admin demo Apps and Keys page](https://admindemo.docusign.com/authenticate?goTo=appsAndKeys), add the Redirect URI http://localhost:3000/callback and then hit save
+    > **Note:** Protect your integration key and client secret. You should make sure that the **.env** file will not be stored in your source code repository. 
+6. Navigate to [the admin demo Apps and Keys page](https://admindemo.docusign.com/authenticate?goTo=appsAndKeys), add the Redirect URI http://localhost:3000/callback and generate your RSA key pair if you haven't already.
 
     > **Note:** You should add a dynamic content properties to your clickwrap by following this [instruction](https://developers.docusign.com/docs/click-api/click101/customize-elastic-template-fields/) before using it in the sample app.
+
+7. Update the **private.key** file with your private RSA key.
+8. Copy your **.env** and your **private.key** files into the server folder
+    ```shell
+    cd ../
+    cp .env server/.env
+    cp private.key server/private.key
+    ```
 
 **Using installation scripts**
 
