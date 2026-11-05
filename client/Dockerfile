@@ -1,11 +1,11 @@
-FROM --platform=linux/amd64 node:20.14 AS base
+FROM --platform=linux/amd64 node:26.12.1 AS base
 
 ARG REACT_APP_API_BASE_URL
 ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
 WORKDIR /app
 COPY .env ./
-COPY ./client/package.json ./client/yarn.lock ./
+COPY ./client/package.json ./client/yarn.lock ./client/.npmrc ./
 RUN npm install
 
 COPY ./client/ .
@@ -13,7 +13,7 @@ COPY ./client/ .
 RUN npm run build
 
 # Run stage
-FROM --platform=linux/amd64 nginx:1.23-alpine
+FROM --platform=linux/amd64 nginx:1.27-alpine
 COPY --from=base /app/build /var/www/app
 COPY ./client/nginx/conf/ /etc/nginx/conf.d
 EXPOSE 80 443
